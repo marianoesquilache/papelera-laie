@@ -4,11 +4,13 @@ import java.awt.Color;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import clases.Conexion;
+import clases.LeerExcel;
 
 public class Main extends javax.swing.JFrame {
 
     //Esta variable pasa el dato a la interfaz "ListaProductos"
     public static String palabra;
+    LeerExcel leerExcel = new LeerExcel();
 
     public Main() {
         initComponents();
@@ -42,6 +44,7 @@ public class Main extends javax.swing.JFrame {
         jButton_registrar = new javax.swing.JButton();
         labelTitle1 = new javax.swing.JLabel();
         jbutton_buscarNombre = new javax.swing.JButton();
+        jButton_leerExcel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Papelera y Librería \"La ie\"");
@@ -106,6 +109,14 @@ public class Main extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jbutton_buscarNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 350, 140, 30));
+
+        jButton_leerExcel.setText("Leer Excel");
+        jButton_leerExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_leerExcelActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton_leerExcel, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 250, 140, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -289,6 +300,10 @@ public class Main extends javax.swing.JFrame {
         listaProductos.setVisible(true);
     }//GEN-LAST:event_jbutton_buscarNombreActionPerformed
 
+    private void jButton_leerExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_leerExcelActionPerformed
+        leerExcel.leerExcel();
+    }//GEN-LAST:event_jButton_leerExcelActionPerformed
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -314,9 +329,11 @@ public class Main extends javax.swing.JFrame {
     public String getNombre() {
         return txt_nombreProducto.getText().trim();
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_buscarCod;
+    private javax.swing.JButton jButton_leerExcel;
     private javax.swing.JButton jButton_registrar;
     private javax.swing.JButton jbutton_buscarNombre;
     private javax.swing.JLabel labelCatProducto;
