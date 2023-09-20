@@ -5,21 +5,51 @@ import java.sql.*;
 import javax.swing.JOptionPane;
 import clases.Conexion;
 import clases.LeerExcel;
+import java.awt.Image;
+import java.awt.Toolkit;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 public class Main extends javax.swing.JFrame {
+    String codigoProducto,nombreProducto,categoriaProducto;
+    Float precio1 = 0f, precio2 = 0f, precio3 = 0f, precio4 = 0f;
+    
+    
 
     //Esta variable pasa el dato a la interfaz "ListaProductos"
     public static String palabra;
     LeerExcel leerExcel = new LeerExcel();
+    
+    
 
     public Main() {
         initComponents();
-        setTitle("Papelera Librería \"La ie\"");
+        setTitle("Papelera Librería \"Laíe\"");
         setLocationRelativeTo(null);
         limpiar();
         setResizable(false);
         setSize(640, 480);
         txt_nombreProducto.setText("");
+        
+        ImageIcon wallpaper = new ImageIcon("src/img/green.jpg");
+        Icon icono = new ImageIcon(wallpaper.getImage().getScaledInstance(jLabel_Wallpaper.getWidth(),
+                    jLabel_Wallpaper.getHeight(), Image.SCALE_DEFAULT));
+        
+        jLabel_Wallpaper.setIcon(icono);
+        this.repaint();
+        
+        ImageIcon wallpaper_logo = new ImageIcon("src/img/logo.png");
+        Icon icono_logo = new ImageIcon(wallpaper_logo.getImage().getScaledInstance(jLabel_Logo.getWidth(),
+                jLabel_Logo.getHeight(),Image.SCALE_DEFAULT));
+        jLabel_Logo.setIcon(icono_logo);
+        this.repaint();
+        
+    }
+    
+    @Override
+    public Image getIconImage(){
+        Image retValue =   Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("img/icono.png"));
+        return retValue;
     }
 
     @SuppressWarnings("unchecked")
@@ -45,137 +75,143 @@ public class Main extends javax.swing.JFrame {
         labelTitle1 = new javax.swing.JLabel();
         jbutton_buscarNombre = new javax.swing.JButton();
         jButton_leerExcel = new javax.swing.JButton();
+        jLabel_Logo = new javax.swing.JLabel();
+        jLabel_Wallpaper = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Papelera y Librería \"La ie\"");
         setBackground(new java.awt.Color(102, 255, 102));
+        setForeground(java.awt.Color.yellow);
+        setIconImage(getIconImage());
         setResizable(false);
         setSize(new java.awt.Dimension(640, 480));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        labelCodProducto.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
+        labelCodProducto.setForeground(new java.awt.Color(255, 255, 255));
         labelCodProducto.setText("Codigo del Producto");
         getContentPane().add(labelCodProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
+        labelCatProducto.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
+        labelCatProducto.setForeground(new java.awt.Color(255, 255, 255));
         labelCatProducto.setText("Categoría de Producto");
         getContentPane().add(labelCatProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
 
+        labelNomProducto.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
+        labelNomProducto.setForeground(new java.awt.Color(255, 255, 255));
         labelNomProducto.setText("Nombre del Producto");
         getContentPane().add(labelNomProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, 34));
 
+        labelPrecio3.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
+        labelPrecio3.setForeground(new java.awt.Color(255, 255, 255));
         labelPrecio3.setText("Precio 3");
         getContentPane().add(labelPrecio3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, 34));
 
+        labelPrecio.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
+        labelPrecio.setForeground(new java.awt.Color(255, 255, 255));
         labelPrecio.setText("Precio Costo");
-        getContentPane().add(labelPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, 34));
+        getContentPane().add(labelPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, 34));
 
+        labelPrecio4.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
+        labelPrecio4.setForeground(new java.awt.Color(255, 255, 255));
         labelPrecio4.setText("Precio 4");
         getContentPane().add(labelPrecio4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, -1, 34));
 
+        labelPrecio2.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
+        labelPrecio2.setForeground(new java.awt.Color(255, 255, 255));
         labelPrecio2.setText("Precio 2");
         getContentPane().add(labelPrecio2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, 34));
+
+        txt_precio4.setFont(new java.awt.Font("Microsoft New Tai Lue", 0, 14)); // NOI18N
+        txt_precio4.setForeground(new java.awt.Color(51, 153, 0));
         getContentPane().add(txt_precio4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, 80, -1));
-        getContentPane().add(txt_codigoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 450, -1));
-        getContentPane().add(txt_nombreProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 450, -1));
-        getContentPane().add(txt_categoriaProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 450, -1));
+
+        txt_codigoProducto.setFont(new java.awt.Font("Microsoft New Tai Lue", 0, 14)); // NOI18N
+        txt_codigoProducto.setForeground(new java.awt.Color(51, 153, 0));
+        getContentPane().add(txt_codigoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 410, -1));
+
+        txt_nombreProducto.setFont(new java.awt.Font("Microsoft New Tai Lue", 0, 14)); // NOI18N
+        txt_nombreProducto.setForeground(new java.awt.Color(51, 153, 0));
+        getContentPane().add(txt_nombreProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 410, -1));
+
+        txt_categoriaProducto.setFont(new java.awt.Font("Microsoft New Tai Lue", 0, 14)); // NOI18N
+        txt_categoriaProducto.setForeground(new java.awt.Color(51, 153, 0));
+        getContentPane().add(txt_categoriaProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 410, -1));
+
+        txt_precio.setFont(new java.awt.Font("Microsoft New Tai Lue", 0, 14)); // NOI18N
+        txt_precio.setForeground(new java.awt.Color(51, 153, 0));
         getContentPane().add(txt_precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 80, -1));
+
+        txt_precio2.setFont(new java.awt.Font("Microsoft New Tai Lue", 0, 14)); // NOI18N
+        txt_precio2.setForeground(new java.awt.Color(51, 153, 0));
         getContentPane().add(txt_precio2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 80, -1));
+
+        txt_precio3.setFont(new java.awt.Font("Microsoft New Tai Lue", 0, 14)); // NOI18N
+        txt_precio3.setForeground(new java.awt.Color(51, 153, 0));
         getContentPane().add(txt_precio3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, 80, -1));
 
+        jButton_buscarCod.setBackground(new java.awt.Color(44, 168, 48));
+        jButton_buscarCod.setForeground(new java.awt.Color(255, 255, 255));
         jButton_buscarCod.setText("Buscar Código");
+        jButton_buscarCod.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton_buscarCod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_buscarCodActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton_buscarCod, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 300, 140, 30));
+        getContentPane().add(jButton_buscarCod, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 280, 140, 30));
 
+        jButton_registrar.setBackground(new java.awt.Color(44, 168, 48));
+        jButton_registrar.setForeground(new java.awt.Color(255, 255, 255));
         jButton_registrar.setText("Registrar");
+        jButton_registrar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton_registrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_registrarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton_registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 400, 140, 30));
+        getContentPane().add(jButton_registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 390, 140, 30));
 
-        labelTitle1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        labelTitle1.setForeground(new java.awt.Color(51, 204, 0));
-        labelTitle1.setText("Papelera y Librería \"La ie\"");
-        getContentPane().add(labelTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 0, -1, -1));
+        labelTitle1.setFont(new java.awt.Font("Lucida Sans Unicode", 3, 24)); // NOI18N
+        labelTitle1.setForeground(new java.awt.Color(255, 255, 255));
+        labelTitle1.setText("Papelera y Librería \"Laíe\"");
+        getContentPane().add(labelTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 330, -1));
 
+        jbutton_buscarNombre.setBackground(new java.awt.Color(44, 168, 48));
+        jbutton_buscarNombre.setForeground(new java.awt.Color(255, 255, 255));
         jbutton_buscarNombre.setText("Buscar  Nombre");
+        jbutton_buscarNombre.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jbutton_buscarNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbutton_buscarNombreActionPerformed(evt);
             }
         });
-        getContentPane().add(jbutton_buscarNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 350, 140, 30));
+        getContentPane().add(jbutton_buscarNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 340, 140, 30));
 
+        jButton_leerExcel.setBackground(new java.awt.Color(44, 168, 48));
+        jButton_leerExcel.setForeground(new java.awt.Color(255, 255, 255));
         jButton_leerExcel.setText("Leer Excel");
+        jButton_leerExcel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton_leerExcel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_leerExcelActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton_leerExcel, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 250, 140, 30));
+        getContentPane().add(jButton_leerExcel, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 220, 140, 30));
+        getContentPane().add(jLabel_Logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, 170, 170));
+
+        jLabel_Wallpaper.setFont(new java.awt.Font("Microsoft New Tai Lue", 0, 10)); // NOI18N
+        getContentPane().add(jLabel_Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_registrarActionPerformed
-        String codigoProducto, categoriaProducto, nombreProducto;
-        Float precio = 0f, precio2 = 0f, precio3 = 0f, precio4 = 0f;
-
-        //Para validar que el campo nombre tenga contenido(Obligatorio)
-        boolean sinNombre = false;
-
-        //Esta variable es para diferenciar productos nuevos de los ya existentes. Evita conflicto al ingresar nuevo producto.
-        boolean invalido = false;
+        boolean noNumerico = false,invalido = false,sinNombre = false;
         
-        boolean noNumerico = false;
+        validarIngresos();
         
-        codigoProducto = txt_codigoProducto.getText().trim();
-        categoriaProducto = txt_categoriaProducto.getText().trim();
-        nombreProducto = txt_nombreProducto.getText().trim();
-
-        //Esta validación soluciona el problema de Productos sin Código que se Actualizan en vez ede crear nuevo producto.
-        if (codigoProducto.equals("")) {
-            codigoProducto = nombreProducto;
-        }
-        //Validaciones de los Precios
-        if (!txt_precio.getText().trim().isEmpty()) {
-            try {
-                precio = Float.parseFloat(txt_precio.getText().trim());
-            } catch (Exception e) {
-                noNumerico = true;
-                JOptionPane.showMessageDialog(null, "Los precios se ingresan en números decimales declarados con \".\"(punto)");
-            }
-        }
-        if (!txt_precio2.getText().trim().isEmpty()) {
-            try {
-                precio2 = Float.parseFloat(txt_precio2.getText().trim());
-            } catch (Exception e) {
-                noNumerico = true;
-                JOptionPane.showMessageDialog(null, "Los precios se ingresan en números decimales declarados con \".\"(punto)");
-            }
-        }
-        if (!txt_precio3.getText().trim().isEmpty()) {
-            try {
-                precio3 = Float.parseFloat(txt_precio3.getText().trim());
-            } catch (Exception e) {
-                noNumerico = true;
-                JOptionPane.showMessageDialog(null, "Los precios se ingresan en números decimales declarados con \".\"(punto)");
-            }
-        }
-        if (!txt_precio4.getText().trim().isEmpty()) {
-            try {
-                precio4 = Float.parseFloat(txt_precio4.getText().trim());
-            } catch (Exception e) {
-                noNumerico = true;
-                JOptionPane.showMessageDialog(null, "Los precios se ingresan en números decimales declarados con \".\"(punto)");
-                
-            }
-        }
-
+        //Chequeando si este codigo ya existia en la BD
         try {
             Connection cn = Conexion.conectar();
             PreparedStatement pst = cn.prepareStatement("select * from productos where cod_producto=?");
@@ -195,7 +231,7 @@ public class Main extends javax.swing.JFrame {
                         pst.setString(1, codigoProducto);
                         pst.setString(2, categoriaProducto);
                         pst.setString(3, nombreProducto);
-                        pst.setFloat(4, precio);
+                        pst.setFloat(4, precio1);
                         pst.setFloat(5, precio2);
                         pst.setFloat(6, precio3);
                         pst.setFloat(7, precio4);
@@ -236,7 +272,7 @@ public class Main extends javax.swing.JFrame {
                     pst.setString(2, codigoProducto);
                     pst.setString(3, categoriaProducto);
                     pst.setString(4, nombreProducto);
-                    pst.setFloat(5, precio);
+                    pst.setFloat(5, precio1);
                     pst.setFloat(6, precio2);
                     pst.setFloat(7, precio3);
                     pst.setFloat(8, precio4);
@@ -260,14 +296,14 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_registrarActionPerformed
 
     private void jButton_buscarCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_buscarCodActionPerformed
-        String codProducto = txt_codigoProducto.getText().trim();
+        codigoProducto = txt_codigoProducto.getText().trim();
 
-        if (!codProducto.isEmpty()) {
+        if (!codigoProducto.isEmpty()) {
             try {
                 Connection cn = Conexion.conectar();
                 PreparedStatement pst = cn.prepareStatement("select * from productos where cod_producto = ?");
 
-                pst.setString(1, codProducto);
+                pst.setString(1, codigoProducto);
 
                 ResultSet rs = pst.executeQuery();
 
@@ -330,11 +366,70 @@ public class Main extends javax.swing.JFrame {
         return txt_nombreProducto.getText().trim();
     }
     
+    public void verificarCodigoIngreso(){
+        
+    }
+    
+    public void validarIngresos(){
+        //Para validar que el campo nombre tenga contenido(Obligatorio)
+        boolean sinNombre = false;
+
+        //Esta variable es para diferenciar productos nuevos de los ya existentes. Evita conflicto al ingresar nuevo producto.
+        boolean invalido = false;
+        
+        boolean noNumerico = false;
+        
+        codigoProducto = txt_codigoProducto.getText().trim();
+        categoriaProducto = txt_categoriaProducto.getText().trim();
+        nombreProducto = txt_nombreProducto.getText().trim();
+
+        //Esta validación soluciona el problema de Productos sin Código que se Actualizan en vez ede crear nuevo producto.
+        if (codigoProducto.equals("")) {
+            codigoProducto = nombreProducto;
+        }
+        //Validaciones de los Precios
+        if (!txt_precio.getText().trim().isEmpty()) {
+            try {
+                precio1 = Float.parseFloat(txt_precio.getText().trim());
+            } catch (Exception e) {
+                noNumerico = true;
+                JOptionPane.showMessageDialog(null, "Los precios se ingresan en números decimales declarados con \".\"(punto)");
+            }
+        }
+        if (!txt_precio2.getText().trim().isEmpty()) {
+            try {
+                precio2 = Float.parseFloat(txt_precio2.getText().trim());
+            } catch (Exception e) {
+                noNumerico = true;
+                JOptionPane.showMessageDialog(null, "Los precios se ingresan en números decimales declarados con \".\"(punto)");
+            }
+        }
+        if (!txt_precio3.getText().trim().isEmpty()) {
+            try {
+                precio3 = Float.parseFloat(txt_precio3.getText().trim());
+            } catch (Exception e) {
+                noNumerico = true;
+                JOptionPane.showMessageDialog(null, "Los precios se ingresan en números decimales declarados con \".\"(punto)");
+            }
+        }
+        if (!txt_precio4.getText().trim().isEmpty()) {
+            try {
+                precio4 = Float.parseFloat(txt_precio4.getText().trim());
+            } catch (Exception e) {
+                noNumerico = true;
+                JOptionPane.showMessageDialog(null, "Los precios se ingresan en números decimales declarados con \".\"(punto)");
+                
+            }
+        }
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_buscarCod;
     private javax.swing.JButton jButton_leerExcel;
     private javax.swing.JButton jButton_registrar;
+    private javax.swing.JLabel jLabel_Logo;
+    private javax.swing.JLabel jLabel_Wallpaper;
     private javax.swing.JButton jbutton_buscarNombre;
     private javax.swing.JLabel labelCatProducto;
     private javax.swing.JLabel labelCodProducto;

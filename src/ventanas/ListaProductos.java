@@ -6,8 +6,7 @@ package ventanas;
 
 import java.sql.*;
 import clases.Conexion;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.WindowConstants;
@@ -16,7 +15,7 @@ import ventanas.Main;
 
 public class ListaProductos extends javax.swing.JFrame {
 
-    
+    Color colorDeFondo = new Color(64, 163, 31);
     //Instancia de clase main que usaremos para traer el String palabra
     Main instanciaMain = new Main();
     public static String palabra;
@@ -27,7 +26,9 @@ public class ListaProductos extends javax.swing.JFrame {
 
         palabra = instanciaMain.palabra;
         initComponents();
+        this.getContentPane().setBackground(colorDeFondo);
         setSize(840, 480);
+        setTitle("Lista de Productos");
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -70,7 +71,11 @@ public class ListaProductos extends javax.swing.JFrame {
             System.out.println("No se pudo llenar tabla");
             JOptionPane.showMessageDialog(null, "No se pudo llenar la tabla, contacte al administrador.");
         }
+    
+        
+    
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -87,6 +92,7 @@ public class ListaProductos extends javax.swing.JFrame {
         jLabel_title = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 204, 0));
         setSize(new java.awt.Dimension(640, 480));
 
         jTable_productos.setModel(new javax.swing.table.DefaultTableModel(
@@ -102,9 +108,11 @@ public class ListaProductos extends javax.swing.JFrame {
         ));
         jScrollPane_productos.setViewportView(jTable_productos);
 
+        jLabel_footer.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_footer.setText("Desarrollado por Mariano Esquilache™");
 
-        jLabel_title.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel_title.setFont(new java.awt.Font("Lucida Console", 1, 18)); // NOI18N
+        jLabel_title.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_title.setText("Productos Registrados");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -118,20 +126,20 @@ public class ListaProductos extends javax.swing.JFrame {
                         .addGap(300, 300, 300)
                         .addComponent(jLabel_footer))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(296, 296, 296)
+                        .addGap(297, 297, 297)
                         .addComponent(jLabel_title)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(67, 67, 67)
+                .addGap(19, 19, 19)
                 .addComponent(jLabel_title)
-                .addGap(61, 61, 61)
-                .addComponent(jScrollPane_productos, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane_productos, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel_footer)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
